@@ -1,16 +1,41 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 import { useGoogleLogin } from "@react-oauth/google";
+import { registerDeviceAuth } from "service/api";
 
 import { Button, CheckBox, Img, Input, Line, Text } from "components";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const SigninDefaultPage = () => {
+  const [register, setRegister] = React.useState();
+  const navigate = useNavigate();
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
       console.log("res", res);
       alert("Login successfull. 😍");
     },
   });
+
+  function login1() {
+    const req = {};
+
+    registerDeviceAuth(req)
+      .then((res) => {
+        setRegister(res?.data);
+
+        localStorage.setItem("id", JSON.stringify(res?.data?.data?.id));
+
+        navigate("/dashboardone");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Invalid crendentials");
+      });
+  }
 
   return (
     <>
@@ -129,7 +154,12 @@ const SigninDefaultPage = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-12 items-center justify-start w-full">
-                <Button className="bg-deep_orange-300 cursor-pointer font-bold py-[19px] rounded-[28px] text-center text-sm text-white-A700 w-full">
+                <Button
+                  className="common-pointer bg-deep_orange-300 cursor-pointer font-bold py-[19px] rounded-[28px] text-center text-sm text-white-A700 w-full"
+                  onClick={() => {
+                    login1();
+                  }}
+                >
                   LOGIN
                 </Button>
                 <div className="flex flex-row gap-1 items-start justify-center w-full">
@@ -151,6 +181,7 @@ const SigninDefaultPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
