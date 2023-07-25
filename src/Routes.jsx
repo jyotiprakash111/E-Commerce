@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
+import { ProtectedRoute } from "components";
 const AddProduct = React.lazy(() => import("pages/AddProduct"));
 const NoPromotionPopup = React.lazy(() => import("pages/NoPromotionPopup"));
 const DeletePopup = React.lazy(() => import("pages/DeletePopup"));
@@ -78,7 +79,10 @@ const ProjectRoutes = () => {
     <React.Suspense fallback={<>Loading...</>}>
       <Router>
         <Routes>
-          <Route path="/" element={<ShopDetailitem />} />
+          <Route
+            path="/"
+            element={<ProtectedRoute element={ShopDetailitem} />}
+          />
           <Route path="*" element={<NotFound />} />
           <Route path="/signindefault" element={<SigninDefault />} />
           <Route
@@ -95,73 +99,163 @@ const ProjectRoutes = () => {
             path="/signupverificationone"
             element={<SignupVerificationOne />}
           />
-          <Route path="/dashboardone" element={<DashboardOne />} />
-          <Route path="/dashboardtwo" element={<DashboardTwo />} />
-          <Route path="/dashboardthree" element={<DashboardThree />} />
-          <Route path="/dashboardsubcrible" element={<DashboardSubcrible />} />
+          <Route
+            path="/dashboardone"
+            element={<ProtectedRoute element={DashboardOne} />}
+          />
+          <Route
+            path="/dashboardtwo"
+            element={<ProtectedRoute element={DashboardTwo} />}
+          />
+          <Route
+            path="/dashboardthree"
+            element={<ProtectedRoute element={DashboardThree} />}
+          />
+          <Route
+            path="/dashboardsubcrible"
+            element={<ProtectedRoute element={DashboardSubcrible} />}
+          />
           <Route
             path="/dashboardrechargemoney"
-            element={<DashboardRechargemoney />}
+            element={<ProtectedRoute element={DashboardRechargemoney} />}
           />
           <Route
             path="/dashboardpaymentsuccessful"
-            element={<DashboardPaymentsuccessful />}
+            element={<ProtectedRoute element={DashboardPaymentsuccessful} />}
           />
-          <Route path="/calendarmonth" element={<CalendarMonth />} />
-          <Route path="/calendardaynoevent" element={<CalendarDayNoevent />} />
-          <Route path="/calendarday1event" element={<CalendarDay1Event />} />
-          <Route path="/calendarweek" element={<CalendarWeek />} />
-          <Route path="/createeventpopup" element={<CreateEventPopup />} />
+          <Route
+            path="/calendarmonth"
+            element={<ProtectedRoute element={CalendarMonth} />}
+          />
+          <Route
+            path="/calendardaynoevent"
+            element={<ProtectedRoute element={CalendarDayNoevent} />}
+          />
+          <Route
+            path="/calendarday1event"
+            element={<ProtectedRoute element={CalendarDay1Event} />}
+          />
+          <Route
+            path="/calendarweek"
+            element={<ProtectedRoute element={CalendarWeek} />}
+          />
+          <Route
+            path="/createeventpopup"
+            element={<ProtectedRoute element={CreateEventPopup} />}
+          />
           <Route
             path="/filemanagementdefault"
-            element={<FileManagementDefault />}
+            element={<ProtectedRoute element={FileManagementDefault} />}
           />
-          <Route path="/tracktasks" element={<Tracktasks />} />
-          <Route path="/conversation" element={<Conversation />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/customer" element={<Customer />} />
-          <Route path="/ekycbegin" element={<EKYCBegin />} />
+          <Route
+            path="/tracktasks"
+            element={<ProtectedRoute element={Tracktasks} />}
+          />
+          <Route
+            path="/conversation"
+            element={<ProtectedRoute element={Conversation} />}
+          />
+          <Route
+            path="/profile"
+            element={<ProtectedRoute element={Profile} />}
+          />
+          <Route
+            path="/settings"
+            element={<ProtectedRoute element={Settings} />}
+          />
+          <Route
+            path="/customer"
+            element={<ProtectedRoute element={Customer} />}
+          />
+          <Route
+            path="/ekycbegin"
+            element={<ProtectedRoute element={EKYCBegin} />}
+          />
           <Route
             path="/ekycintroductionstepone"
-            element={<EKYCIntroductionStepOne />}
+            element={<ProtectedRoute element={EKYCIntroductionStepOne} />}
           />
-          <Route path="/ekycscanidcard" element={<EKYCScanIDCard />} />
+          <Route
+            path="/ekycscanidcard"
+            element={<ProtectedRoute element={EKYCScanIDCard} />}
+          />
           <Route
             path="/ekycscanidcardaddimage"
-            element={<EKYCScanIDCardAddimage />}
+            element={<ProtectedRoute element={EKYCScanIDCardAddimage} />}
           />
           <Route
             path="/ekycintroductionsteptwo"
-            element={<EKYCIntroductionStepTwo />}
+            element={<ProtectedRoute element={EKYCIntroductionStepTwo} />}
           />
-          <Route path="/ekycscanface" element={<EKYCScanFace />} />
+          <Route
+            path="/ekycscanface"
+            element={<ProtectedRoute element={EKYCScanFace} />}
+          />
           <Route
             path="/ekycintroductionstepthree"
-            element={<EKYCIntroductionStepThree />}
+            element={<ProtectedRoute element={EKYCIntroductionStepThree} />}
           />
           <Route
             path="/ekycconfirminformation"
-            element={<EKYCConfirmInformation />}
+            element={<ProtectedRoute element={EKYCConfirmInformation} />}
           />
           <Route
             path="/ekycintroductionstepfour"
-            element={<EKYCIntroductionStepFour />}
+            element={<ProtectedRoute element={EKYCIntroductionStepFour} />}
           />
-          <Route path="/ekycsignature" element={<EKYCSignature />} />
-          <Route path="/ekycsuccessful" element={<EKYCSuccessful />} />
-          <Route path="/shopsearch" element={<ShopSearch />} />
-          <Route path="/shopreviews" element={<ShopReviews />} />
-          <Route path="/cartempty" element={<Cartempty />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/shippinginfo" element={<ShippingInfo />} />
-          <Route path="/paymentinfo" element={<PaymentInfo />} />
-          <Route path="/checkoutinprocess" element={<Checkoutinprocess />} />
-          <Route path="/checkoutsuccessful" element={<CheckoutSuccessful />} />
-          <Route path="/cartproductlist" element={<CartProductList />} />
-          <Route path="/deletepopup" element={<DeletePopup />} />
-          <Route path="/nopromotionpopup" element={<NoPromotionPopup />} />
-          <Route path="/addproduct" element={<AddProduct />} />
+          <Route
+            path="/ekycsignature"
+            element={<ProtectedRoute element={EKYCSignature} />}
+          />
+          <Route
+            path="/ekycsuccessful"
+            element={<ProtectedRoute element={EKYCSuccessful} />}
+          />
+          <Route
+            path="/shopsearch"
+            element={<ProtectedRoute element={ShopSearch} />}
+          />
+          <Route
+            path="/shopreviews"
+            element={<ProtectedRoute element={ShopReviews} />}
+          />
+          <Route
+            path="/cartempty"
+            element={<ProtectedRoute element={Cartempty} />}
+          />
+          <Route path="/cart" element={<ProtectedRoute element={Cart} />} />
+          <Route
+            path="/shippinginfo"
+            element={<ProtectedRoute element={ShippingInfo} />}
+          />
+          <Route
+            path="/paymentinfo"
+            element={<ProtectedRoute element={PaymentInfo} />}
+          />
+          <Route
+            path="/checkoutinprocess"
+            element={<ProtectedRoute element={Checkoutinprocess} />}
+          />
+          <Route
+            path="/checkoutsuccessful"
+            element={<ProtectedRoute element={CheckoutSuccessful} />}
+          />
+          <Route
+            path="/cartproductlist"
+            element={<ProtectedRoute element={CartProductList} />}
+          />
+          <Route
+            path="/deletepopup"
+            element={<ProtectedRoute element={DeletePopup} />}
+          />
+          <Route
+            path="/nopromotionpopup"
+            element={<ProtectedRoute element={NoPromotionPopup} />}
+          />
+          <Route
+            path="/addproduct"
+            element={<ProtectedRoute element={AddProduct} />}
+          />
           <Route path="/dhiwise-dashboard" element={<Home />} />
         </Routes>
       </Router>
