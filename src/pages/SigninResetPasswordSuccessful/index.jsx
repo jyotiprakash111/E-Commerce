@@ -1,11 +1,32 @@
 import React from "react";
 
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
+import { loginDeviceAuth } from "service/api";
 
 import { Button, Img, Text } from "components";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const SigninResetPasswordSuccessfulPage = () => {
+  const [login, setLogin] = React.useState();
   const navigate = useNavigate();
+
+  function login2() {
+    const req = {};
+
+    loginDeviceAuth(req)
+      .then((res) => {
+        setLogin(res?.data);
+
+        navigate("/dashboardthree");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Invalid Credentials");
+      });
+  }
 
   return (
     <>
@@ -29,8 +50,13 @@ const SigninResetPasswordSuccessfulPage = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-12 items-center justify-center w-full">
-                <Button className="bg-deep_orange-300 cursor-pointer font-bold py-[19px] rounded-[28px] text-center text-sm text-white-A700 w-full">
-                  LOGIN
+                <Button
+                  className="common-pointer bg-deep_orange-300 cursor-pointer font-bold py-[19px] rounded-[28px] text-center text-sm text-white-A700 w-full"
+                  onClick={() => {
+                    login2();
+                  }}
+                >
+                  {login?.data?.id}
                 </Button>
                 <div
                   className="common-pointer flex flex-row gap-[7px] items-center justify-start w-auto"
@@ -53,6 +79,7 @@ const SigninResetPasswordSuccessfulPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

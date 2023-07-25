@@ -4,6 +4,7 @@ export { Img } from "./Img";
 export { Input } from "./Input";
 export { Line } from "./Line";
 export { List } from "./List";
+export { ProtectedRoute } from "./ProtectedRoute";
 export { SeekBar } from "./SeekBar";
 export { SelectBox } from "./SelectBox";
 export { Switch } from "./Switch";
